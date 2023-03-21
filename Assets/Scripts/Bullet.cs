@@ -6,23 +6,22 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
-    public float speed = 500.0f;
-    public float maxLifetime = 10.0f;
+    public float speed = 20.0f;
+    //public float maxLifetime = 10.0f;
+
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    public void Project(Vector2 direction)
+    private void FixedUpdate()
     {
-        _rigidbody.AddForce(direction * speed);
-        
-        Destroy(gameObject, maxLifetime);
+        _rigidbody.velocity = transform.up * speed; 
     }
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bullet
   - Asteroid
+  - EnemyShip
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
@@ -17,8 +19,8 @@ TagManager:
   - Asteroid
   - Boundary
   - IgnoreCollitions
-  - 
-  - 
+  - EnemyShip
+  - EnemyBullet
   - 
   - 
   - 
