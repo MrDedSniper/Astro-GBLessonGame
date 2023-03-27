@@ -7,7 +7,7 @@ public class ObjectPoolDrone : MonoBehaviour
     public static ObjectPoolDrone instanceDrone;
 
     private List<GameObject> pooledDroneObjects = new List<GameObject>();
-    private int amountToPoolDrone = 20;
+    private int amountToPoolDrone = 2;
 
     [SerializeField] private GameObject droneBulletPrefab;
     [SerializeField] public Transform drone;

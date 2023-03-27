@@ -6,61 +6,78 @@ using UnityEngine;
 public class Drone : MonoBehaviour
 {
     private SpriteRenderer _spriteRenderer;
-    
-    private Transform _target;
-    [SerializeField] private Transform bulletPosition;
-    private float _angularSpeed = 10.0f;
-    
-    private float _nextShootTime, _shootRate = 3.0f;
+    private Rigidbody2D _rigidbody;
 
-    private bool _isTargetOnSight = false;
+    private GameObject[] enemies;
+    private GameObject closest;
+    
+    //private Transform _target;
+    
+    [SerializeField] private Transform bulletPosition;
+    
+    private float _rotationSpeed = 3.0f;
+    
+    private float _lastShotTime;
+    private float _shootDelay = 0.2f;
+    
+    public Transform droneTarget;
+    private Quaternion _newRotation;
+    
+    private float _distanceToShoot = 5.0f;
 
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    GameObject FindClosestEnemy()
     {
-        if (col.gameObject.tag == "Asteroid")
+        float distance = Mathf.Infinity;
+        Vector2 position = transform.position;
+
+        foreach (GameObject go in enemies)
         {
-            _target = FindObjectOfType<Asteroids.Asteroid>().transform;
-            _isTargetOnSight = true;
-            
-            DroneShooting();
-            
-           /* if (Time.deltaTime > _nextShootTime)
+            Vector2 diff = go.transform.position - transform.position;
+            float currDistance = diff.sqrMagnitude;
+
+            if (currDistance < distance)
             {
-                DroneShooting();
-                _nextShootTime = Time.deltaTime + _shootRate;
-            }*/
-            
+                closest = go;
+                distance = currDistance;
+            }
         }
-        else if (col.gameObject.tag == "EnemyShip")
-        {
-            _target = FindObjectOfType<Asteroids.EnemyShips>().transform;
-            _isTargetOnSight = true;
-            
-            DroneShooting();
-        }
-
-        else
-        {
-            _target = FindObjectOfType<Asteroids.Player>().transform;
-        }
+        
+        return closest;
     }
-
     private void Update()
     {
-        if (_isTargetOnSight)
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        FindClosestEnemy();
+        
+        if (closest)
+        {
+            droneTarget = closest.transform;
+        }
+
+        if (droneTarget)
         {
             LookAtEnemy();
+
+            if (Vector2.Distance(transform.position, droneTarget.transform.position) < _distanceToShoot)
+            {
+                if (Time.time - _lastShotTime > _shootDelay)
+                {
+                    DroneShooting();
+                    _lastShotTime = Time.time;
+                }
+            }
         }
     }
 
     private void DroneShooting()
     {
-        GameObject droneBullet = ObjectPool.instance.GetPooledObject();
+        GameObject droneBullet = ObjectPoolDrone.instanceDrone.GetPooledObject();
 
         if (droneBullet != null)
         {
@@ -72,8 +89,8 @@ public class Drone : MonoBehaviour
 
     private void LookAtEnemy()
     {
-        Vector3 dir = _target.position - transform.position;
-        float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        Vector2 directionToEnemy = droneTarget.transform.position - transform.position;
+        float angleToEnemy = Vector2.Angle(directionToEnemy, transform.up);
+        transform.Rotate(0, 0, angleToEnemy * _rotationSpeed * Time.deltaTime);
     }
 }

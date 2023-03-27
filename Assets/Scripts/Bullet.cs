@@ -7,9 +7,6 @@ public class Bullet : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
     public float speed = 20.0f;
-    //public float maxLifetime = 10.0f;
-
-
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();

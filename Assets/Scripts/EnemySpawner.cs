@@ -34,7 +34,7 @@ namespace Asteroids
                 Quaternion rotation = Quaternion.AngleAxis(variance, Vector3.forward);
             
                 EnemyShips ship = Instantiate(shipsPrefab, spawnPoint, Quaternion.identity);
-                ship.GetComponent<EnemyShips>().target = target;
+                //ship.GetComponent<EnemyShips>().player = target;
                 ship.SetTrajectory(transform.rotation * -spawnDirection);
             }
         }

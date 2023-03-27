@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 8893171098504293487}
   - component: {fileID: 5890985994891304223}
   - component: {fileID: 700742208251495467}
+  - component: {fileID: -7924502288105410984}
   m_Layer: 10
   m_Name: ShipRed
-  m_TagString: EnemyShip
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,5 +150,21 @@ MonoBehaviour:
   maxLifetime: 30
   speed: 5
   explosion: {fileID: 3564998831071726623, guid: 17a9b5c9f5fb6f24daa2fb16532d6acc, type: 3}
-  target: {fileID: 0}
+  player: {fileID: 0}
   bulletPrefab: {fileID: 8825259723668917331, guid: 9b751b1c723aed94780b500b685105f5, type: 3}
+--- !u!58 &-7924502288105410984
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4102587967008307819}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 40

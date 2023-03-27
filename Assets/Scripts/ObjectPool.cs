@@ -21,17 +21,17 @@ public class ObjectPool : MonoBehaviour
             instance = this;
         }
     }
-
+    
     private void Start()
     {
         for (int i = 0; i < amountToPool; i++)
         {
-            GameObject bullet = Instantiate(bulletPrefab, player.GetComponent<Transform>().position, player.GetComponent<Transform>().rotation);
-            bullet.SetActive(false);
-            pooledObjects.Add(bullet);
+            GameObject droneBullet = Instantiate(bulletPrefab, player.GetComponent<Transform>().position, player.GetComponent<Transform>().rotation);
+            droneBullet.SetActive(false);
+            pooledObjects.Add(droneBullet);
         }
     }
-
+    
     public GameObject GetPooledObject()
     {
         for (int i = 0; i < pooledObjects.Count; i++)
@@ -41,6 +41,7 @@ public class ObjectPool : MonoBehaviour
                 return pooledObjects[i];
             }
         }
+        
 
         return null;
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -16,12 +17,9 @@ namespace Asteroids
 
        private int numberOfBullet = LevelingSystem.Level;
 
-       private AudioSource _shootSound;
+       //private AudioSource _shootSound;
        
        private static ParticleSystem _levelUpAnimation;
-       public ParticleSystem fireEngine;
-       
-       
 
        public static void AnimationOfLevelUp()
        {
@@ -32,9 +30,8 @@ namespace Asteroids
        {
            _rigidbody = GetComponent<Rigidbody2D>();
            _levelUpAnimation = GetComponent<ParticleSystem>();
-           _shootSound = GetComponent<AudioSource>();
+           //_shootSound = GetComponent<AudioSource>();
        }
-    
        private void Update()
        {
            _thrusting = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
@@ -52,20 +49,16 @@ namespace Asteroids
                _turnDirection = 0.0f;
            }
     
-           if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+           /*if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
            {
                Shoot();
-           }
+           }*/
        }
     
        private void FixedUpdate()
        {
            if (_thrusting)
            {
-               /*fireEngine.transform.position = gameObject.transform.position;
-               fireEngine.transform.rotation = gameObject.transform.rotation;
-               fireEngine.Play();*/
-               
                _rigidbody.AddForce(transform.up * speed * Time.deltaTime);
            }
            
@@ -75,11 +68,9 @@ namespace Asteroids
            }
        }
     
-       private void Shoot()
+       /*private void Shoot()
        {
            _shootSound.Play();
-           //Bullet bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-           //bullet.Project(transform.up);
 
            GameObject bullet = ObjectPool.instance.GetPooledObject();
 
@@ -89,11 +80,11 @@ namespace Asteroids
                bullet.transform.rotation = transform.rotation;
                bullet.SetActive(true);
            }
-       }
+       }*/
     
        private void OnCollisionEnter2D(Collision2D col)
        {
-           if (col.gameObject.tag == "Asteroid")
+           if (col.gameObject.tag == "Enemy")
            {
                _rigidbody.velocity = Vector3.zero;
                _rigidbody.angularVelocity = 0.0f;

@@ -13,18 +13,24 @@ namespace Asteroids
 
         private SpriteRenderer _spriteRenderer;
         private Rigidbody2D _rigidbody;
+
+        private float _rotationSpeed = 30.0f;
+
+        public GameObject player;
         
-        [SerializeField] public Transform target;
         private void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _rigidbody = GetComponent<Rigidbody2D>();  
         }
-        
+
+        private void Start()
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
         private void Update()
         {
-            LookAtPlayer();
-            //transform.LookAt(target);
+            Vector3 targetDirection = player.transform.position - transform.position;
         }
 
         public void SetTrajectory(Vector2 direction)
@@ -43,9 +49,9 @@ namespace Asteroids
         
         private void LookAtPlayer()
         {
-            Vector3 dir = target.position - transform.position;
-            float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            Vector2 directionToEnemy = player.transform.position - transform.position;
+            float angleToEnemy = Vector2.Angle(directionToEnemy, transform.up);
+            transform.Rotate(0, 0, angleToEnemy * _rotationSpeed * Time.deltaTime);
         }
     } 
 }

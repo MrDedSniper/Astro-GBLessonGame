@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5493333107219555155}
   m_Layer: 10
   m_Name: ShipBlue
-  m_TagString: EnemyShip
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,4 +149,4 @@ MonoBehaviour:
   maxLifetime: 30
   speed: 30
   explosion: {fileID: 3564998831071726623, guid: 17a9b5c9f5fb6f24daa2fb16532d6acc, type: 3}
-  target: {fileID: 5405181474545018735, guid: 8a5c55d6bfb298144994a9c8ac4f8cb1, type: 3}
+  player: {fileID: 0}

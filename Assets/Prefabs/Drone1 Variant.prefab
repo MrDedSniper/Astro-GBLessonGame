@@ -44,7 +44,7 @@ PrefabInstance:
       objectReference: {fileID: 727138938}
     - target: {fileID: 1489004055820970958, guid: 1c39fd8a7e0df6448ba497e8279f04ca, type: 3}
       propertyPath: m_Name
-      value: Drone1
+      value: Drone1 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6746409018733951658, guid: 1c39fd8a7e0df6448ba497e8279f04ca, type: 3}
       propertyPath: m_RootOrder
@@ -68,15 +68,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6746409018733951658, guid: 1c39fd8a7e0df6448ba497e8279f04ca, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6746409018733951658, guid: 1c39fd8a7e0df6448ba497e8279f04ca, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6746409018733951658, guid: 1c39fd8a7e0df6448ba497e8279f04ca, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6746409018733951658, guid: 1c39fd8a7e0df6448ba497e8279f04ca, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

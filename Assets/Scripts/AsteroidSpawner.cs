@@ -11,7 +11,7 @@ namespace Asteroids
 
         public Asteroid asteroidPrefab;
         public float trajectoryVariance = 15.0f;
-        public float spawnRate = 2.0f;
+        public float spawnRate = 0.0f;
         public int spawnAmount = 1;
         public float spawnDistance = 15.0f;
         private void Start()
