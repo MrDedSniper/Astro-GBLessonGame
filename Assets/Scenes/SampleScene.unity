@@ -506,6 +506,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac4e3d9ee6beb14b8f4e18122b7fd56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 598038893}
+  isJumping: 0
+--- !u!114 &659470123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659470105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28cbf86bcfd821e4abfa06833e4476f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &659470132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659470105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791e66073281dff469efb2a4775e69b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JumpForce: 2
+  builderScript: {fileID: 659470114}
+--- !u!114 &659470133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659470105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c83fe04050bddfa438c4edec3960805a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 598038893}
 --- !u!1 &1016243314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,7 +1043,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1606218717
 MonoBehaviour:
   m_ObjectHideFlags: 0
