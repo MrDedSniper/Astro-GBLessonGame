@@ -16,14 +16,18 @@ namespace Asteroids
        
         private void Update()
         {
-            if (Vector2.Distance(transform.position, player.transform.position) < _distanceToShoot)
+            if (player)
             {
-                if (Time.deltaTime - _lastShotTime > _shootDelay)
+                if (Vector2.Distance(transform.position, player.transform.position) < _distanceToShoot)
                 {
-                    ShootAtPlayer();
-                    _lastShotTime = Time.deltaTime;
+                    if (Time.deltaTime - _lastShotTime > _shootDelay)
+                    {
+                        ShootAtPlayer();
+                        _lastShotTime = Time.deltaTime;
+                    }
                 }
             }
+            
         }
         
         private void ShootAtPlayer()

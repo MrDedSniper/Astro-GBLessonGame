@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Asteroids
 {
@@ -10,8 +11,10 @@ namespace Asteroids
     {
         public Player player;
         public ParticleSystem explosion;
+        
         public static int lives;
         public static int score;
+        
         private float respawnTime = 3.0f;
         private float respawnInvulnerabilityTime = 3.0f;
 
@@ -46,8 +49,9 @@ namespace Asteroids
         public void PlayerDied()
         {
             explosion.transform.position = player.transform.position;
+            PlayerNotice.isPlayerDead = true;
             explosion.Play();
-            
+
             lives--;
     
             if (lives <= 0)
@@ -86,6 +90,19 @@ namespace Asteroids
             score = 0;
             
             Invoke(nameof(Respawn), respawnTime);
+        }
+        
+        public void Restart()
+        {
+            lives = 3;
+            score = 0;
+            SceneManager.LoadScene(0);
+            Time.timeScale = 1;
+        }
+
+        public void GameClose()
+        {
+            Application.Quit();
         }
     }
 }

@@ -9,13 +9,16 @@ namespace Asteroids
 {
     public class Player : MonoBehaviour
     {
-       public float speed, turnSpeed;
+        public float speed;
+        public float shieldStrength { get; set; }
+        
+       private float turnSpeed;
        private Rigidbody2D _rigidbody;
     
        private bool _thrusting;
        private float _turnDirection;
 
-       private int numberOfBullet = LevelingSystem.Level;
+      // private int numberOfBullet = LevelingSystem.Level;
        
        private static ParticleSystem _levelUpAnimation;
        
@@ -30,11 +33,17 @@ namespace Asteroids
        {
            _rigidbody = GetComponent<Rigidbody2D>();
            _levelUpAnimation = GetComponent<ParticleSystem>();
+
+           speed = 60.0f;
+           turnSpeed = 60.0f;
+           shieldStrength = 2f;
        }
-       
+
        private void Start()
        {
            playerJump = GetComponent<PlayerJump>();
+
+
        }
        private void Update()
        {
