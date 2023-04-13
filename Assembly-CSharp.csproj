@@ -41,6 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Observer\KillingObserver.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
      <Compile Include="Assets\Scripts\MessageBroker\PlayerNotice.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
@@ -88,6 +89,7 @@
      <Compile Include="Assets\Scripts\MessageBroker\UIManager.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
      <Compile Include="Assets\Scripts\Bridge\NewAttack.cs" />
+     <Compile Include="Assets\Scripts\States\ShipState.cs" />
      <Compile Include="Assets\Scripts\Base\EnemyShips.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
      <Compile Include="Assets\Scripts\Base\Bullet.cs" />
@@ -111,6 +113,8 @@
      <Compile Include="Assets\Scripts\Base\Drone.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\Scripts\Decorator\IAim.cs" />
+     <Compile Include="Assets\Scripts\Visitor\VisitorForEnemy.cs" />
+     <Compile Include="Assets\Scripts\Visitor\VisitorBase.cs" />
      <Folder Include="Assets" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <Folder Include="Assets\Scripts" />
@@ -130,11 +134,14 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
      <Folder Include="Assets\TextMesh Pro\Resources" />
+     <Folder Include="Assets\Scripts\Observer" />
      <Folder Include="Assets\Scripts\MessageBroker" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <Folder Include="Assets\Scripts\Locator" />
+     <Folder Include="Assets\Scripts\States" />
      <Folder Include="Assets\TextMesh Pro" />
      <Folder Include="Assets\Scripts\Memento" />
+     <Folder Include="Assets\Scripts\Visitor" />
      <Folder Include="Assets\Scripts\Builder" />
      <Folder Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts" />
      <Folder Include="Assets\TextMesh Pro\Examples &amp; Extras\Resources" />

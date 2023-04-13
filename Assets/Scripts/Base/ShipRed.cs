@@ -27,12 +27,16 @@ namespace Asteroids
                     }
                 }
             }
-            
         }
         
         private void ShootAtPlayer()
         {
             Bullet bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+        }
+        
+        public void Accept(VisitorForEnemy visitor)
+        {
+           visitor.visit(this);
         }
     }
 }

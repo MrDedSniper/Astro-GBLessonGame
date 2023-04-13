@@ -17,6 +17,9 @@ namespace Asteroids
         
         private float respawnTime = 3.0f;
         private float respawnInvulnerabilityTime = 3.0f;
+        
+        public delegate void SubjectHandler();
+        public event SubjectHandler NotifyObserversEvent;
 
         private void Start()
         {
@@ -29,6 +32,7 @@ namespace Asteroids
         {
             explosion.transform.position = asteroid.transform.position;
             explosion.Play();
+            NotifyObserversEvent?.Invoke();
     
             if (asteroid.size < 0.75f)
             {
@@ -42,7 +46,7 @@ namespace Asteroids
             {
                 score += 50;
             }
-            
+
             LevelingSystem.GainExp();
         }
     
@@ -68,6 +72,7 @@ namespace Asteroids
         {
             explosion.transform.position = player.transform.position;
             explosion.Play();
+            NotifyObserversEvent?.Invoke();
             score += 250;
         }
     

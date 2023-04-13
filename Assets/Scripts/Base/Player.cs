@@ -18,11 +18,13 @@ namespace Asteroids
        private bool _thrusting;
        private float _turnDirection;
 
-      // private int numberOfBullet = LevelingSystem.Level;
-       
        private static ParticleSystem _levelUpAnimation;
        
        private PlayerJump playerJump;
+       
+       private ShipState _currentState = ShipState.Idle;
+       
+       private Player _ship;
 
        public static void AnimationOfLevelUp()
        {
@@ -42,32 +44,50 @@ namespace Asteroids
        private void Start()
        {
            playerJump = GetComponent<PlayerJump>();
-
-
+           _ship = FindObjectOfType<Player>();
        }
        private void Update()
        {
-           _thrusting = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
-
-           if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+           if (Input.GetKeyDown(KeyCode.W))
            {
-               _turnDirection = 1.0f;
+               _ship.MoveUp();
            }
-           else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+           else if (Input.GetKeyDown(KeyCode.A))
            {
-               _turnDirection = -1.0f;
+               _ship.MoveLeft();
+           }
+           else if (Input.GetKeyDown(KeyCode.D))
+           {
+               _ship.MoveRight();
+           }
+           else if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+           {
+               _ship.StopMoving();
            }
            else if (Input.GetKeyDown(KeyCode.Space))
            {
-               playerJump.Jump();
-           }
-           else
-           {
-               _turnDirection = 0.0f;
+               _ship.Jump();
            }
        }
        private void FixedUpdate()
        {
+           switch (_currentState)
+           {
+               case ShipState.MovingUp:
+                   _thrusting = Input.GetKey(KeyCode.W);
+                   break;
+               case ShipState.MovingLeft:
+                   _rigidbody.AddTorque(1f * turnSpeed * Time.deltaTime);
+                   break;
+               case ShipState.MovingRight:
+                   _rigidbody.AddTorque(-1f * turnSpeed * Time.deltaTime);
+                   break;
+               case ShipState.Jump:
+                   playerJump.Jump();
+                   break;
+           }
+           
+           
            if (_thrusting)
            {
                _rigidbody.AddForce(transform.up * speed * Time.deltaTime);
@@ -89,6 +109,31 @@ namespace Asteroids
 
                FindObjectOfType<GameManager>().PlayerDied(); //Так делать лучше не стоит
            }
+       }
+       
+       public void MoveUp()
+       {
+           _currentState = ShipState.MovingUp;
+       }
+
+       public void MoveLeft()
+       {
+           _currentState = ShipState.MovingLeft;
+       }
+
+       public void MoveRight()
+       {
+           _currentState = ShipState.MovingRight;
+       }
+
+       public void StopMoving()
+       {
+           _currentState = ShipState.Idle;
+       }
+       
+       public void Jump()
+       {
+           _currentState = ShipState.Jump;
        }
     }
 }

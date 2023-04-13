@@ -10,6 +10,7 @@ namespace Asteroids
     public class EnemySpawner : MonoBehaviour
     {
         public EnemyShips shipsPrefab;
+        private ShipRed _shipRed;
         
         public float trajectoryVariance = 15.0f;
         public float spawnRate = 10.0f;
@@ -20,9 +21,9 @@ namespace Asteroids
 
         private void Start()
         {
+            
             InvokeRepeating(nameof(Spawn), spawnRate, spawnRate);
         }
-
         private void Spawn()
         {
             for (int i = 0; i < spawnAmount; i++)
@@ -35,9 +36,12 @@ namespace Asteroids
             
                 EnemyShips ship = Instantiate(shipsPrefab, spawnPoint, Quaternion.identity);
                 ship.SetTrajectory(transform.rotation * -spawnDirection);
+                
+                VisitorForEnemy visitor = new VisitorForEnemy();
+                _shipRed = FindObjectOfType<ShipRed>();
+                _shipRed.Accept(visitor);
             }
         }
-
     }
 }
 

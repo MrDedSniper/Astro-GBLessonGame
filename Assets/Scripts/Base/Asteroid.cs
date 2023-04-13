@@ -55,7 +55,7 @@ namespace Asteroids
                 Destroy(gameObject);
             }
         }
-    
+        
         private void CreateSplit()
         {
             Vector2 position = this.transform.position;

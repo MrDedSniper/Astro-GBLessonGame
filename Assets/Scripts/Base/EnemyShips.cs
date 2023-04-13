@@ -16,7 +16,7 @@ namespace Asteroids
 
         private float _rotationSpeed = 30.0f;
 
-        public GameObject player;
+        public Player player;
         
         private void Awake()
         {
@@ -26,11 +26,14 @@ namespace Asteroids
 
         private void Start()
         {
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = GameObject.FindObjectOfType<Player>();
         }
         private void Update()
         {
-            Vector3 targetDirection = player.transform.position - transform.position;
+            if (player)
+            {
+                LookAtPlayer();
+            }
         }
 
         public void SetTrajectory(Vector2 direction)
@@ -53,7 +56,9 @@ namespace Asteroids
             float angleToEnemy = Vector2.Angle(directionToEnemy, transform.up);
             transform.Rotate(0, 0, angleToEnemy * _rotationSpeed * Time.deltaTime);
         }
-    } 
+
+        
+    }
 }
 
 
